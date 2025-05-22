@@ -33,6 +33,36 @@ router.get('/wishlist/:id?', async (req: Request, res: Response) => {
   }
 });
 
+router.post('/wishlist', async (req: Request, res: Response) => {
+  try {
+    const newItem = req.body;
+
+    const db = await connectToDB();
+    const collection = await db.collection("wishlist");
+
+    const wishlist = await collection.insertOne(newItem);
+
+    res.status(204).json(wishlist);
+  } catch (error) {
+    res.status(500).json({ error: `Erro ao adicionar o produto da wishlist` });
+  }
+});
+
+router.put('/wishlist/:id', async (req: Request, res: Response) => {
+  try {
+    const updateItem = req.body;
+
+    const db = await connectToDB();
+    const collection = await db.collection("wishlist");
+
+    const query = { _id: new ObjectId(req.params.id) };
+    const wishlistItem = await collection.updateOne(query, { $set: updateItem });
+
+    res.status(200).json(wishlistItem);
+  } catch (error) {
+    res.status(500).json({ error: `Erro ao atualizar o produto da wishlist` });
+  }
+});
 
 
 export default router;
