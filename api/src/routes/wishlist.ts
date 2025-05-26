@@ -64,5 +64,19 @@ router.put('/wishlist/:id', async (req: Request, res: Response) => {
   }
 });
 
+router.delete('/wishlist/:id', async (req: Request, res: Response) => {
+  try {
+    const db = await connectToDB();
+    const collection = await db.collection("wishlist");
+
+    const query = { _id: new ObjectId(req.params.id) };
+    const wishlistItem = await collection.deleteOne(query);
+
+    res.status(200).json(wishlistItem);
+  } catch (error) {
+    res.status(500).json({ error: `Erro ao deletar o produto da wishlist` });
+  }
+});
+
 
 export default router;
