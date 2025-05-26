@@ -52,4 +52,4 @@ http://localhost:3000
 
 ## 💻 Colaboradores
 Equipe 33
-#### Andrew Costa, Gabriela Santos, Samuel Fernandes, Ingrid Oliveira e Benedito Rodrigues
+#### Andrew Costa, Gabriela Rocha, Samuel Fernandes, Ingrid Oliveira e Henry Pereira.
